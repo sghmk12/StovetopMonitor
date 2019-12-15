@@ -45,7 +45,7 @@ HighTemp::HighTemp(int _pinTmp, int _pinThmc)
 
     pinRoomTmp = _pinTmp;
     pinThmc    = _pinThmc;
-    
+
 
 }
 
@@ -53,13 +53,13 @@ void HighTemp::begin()
 {
 
     tempRoom   = getRoomTmp();
-    
+
     Serial.print("tempRoom = ");
     Serial.println(tempRoom);
-    
+
     delay(10);
     Serial.print("pinRoomTmp = ");Serial.println(pinRoomTmp);
-    
+
     delay(10);
     Serial.print("pinThmc = ");Serial.println(pinThmc);
 }
@@ -69,7 +69,7 @@ float HighTemp::getThmc()
     float vol  = getThmcVol();
 
     tempThmc = K_VtoT(vol) + tempRoom;
-    
+
     return tempThmc;
 }
 
@@ -92,12 +92,12 @@ float HighTemp::getRoomTmp()
     int a = getAnalog(pinRoomTmp)*50/33;                                // 3.3V supply
     float resistance=(float)(1023-a)*10000/a;                           // get the resistance of the sensor;
     float temperature=1/(log(resistance/10000)/3975+1/298.15)-273.15;   // convert to temperature via datasheet ;
-    
-    
+
+
     Serial.print("a = ");Serial.println(a);
     Serial.print("resistance = ");Serial.println(resistance);
    // Serial.print("temperature = ");Serial.println(temperature);
-    
+
     tempRoom = temperature;
     return temperature;
 }
@@ -107,7 +107,7 @@ float HighTemp::getThmcVol()                                             // get 
 {
     float vout = (float)getAnalog(pinThmc)/1023.0*5.0*1000;
     float vin  = (vout - VOL_OFFSET)/AMP_AV;
-    return (vin);    
+    return (vin);
 }
 
 

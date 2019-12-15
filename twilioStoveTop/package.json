@@ -1,0 +1,14 @@
+{
+  "name": "twiliostovetop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "send_sms.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "twilio": "^3.39.0"
+  }
+}
